@@ -66,7 +66,7 @@ end
 u0 = [2.0, 2.0]
 t_break = [3.5, 4.5]
 p = [1.2, 1.5, 3.0, 2.5]
-sensealg1 = ForwardDiffSensitivity()
+sensealg1 = ForwardDiffSensitivity(du0_sense=true)
 sensealg2 = SimpleAdjoint(:EnzymeVJP)
 sensealg3 = SimpleAdjoint(:ZygoteVJP)
 argument_combination = Iterators.product((u0, u0_true), (p, p_true), (t_break, t_break_true))
