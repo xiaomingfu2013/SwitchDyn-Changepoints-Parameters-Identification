@@ -1,4 +1,4 @@
-# Simultaneous Identification of Change Points and Model Parameters
+# Simultaneous Identification of Changepoints and Model Parameters in Switching Dynamical Systems
 
 This repository contains the code for the paper Xiaoming Fu et al. "Simultaneous Identification of Changepoints and Model Parameters in Switching Dynamical Systems" (2024). To run the code repository locally, please check the `Project.toml` file for the required packages and install them in your local Julia environment.
 
