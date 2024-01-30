@@ -251,7 +251,7 @@ param_dict = DataFrames.DataFrame(
     "relative_error" => abs.(estim_list .- true_ps_list) ./ true_ps_list,
 )
 
-@quickactivate "EpidInferenceWIP"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 save_path = datadir(
     "sims/inference_lv_$changepoint_method/",
 )

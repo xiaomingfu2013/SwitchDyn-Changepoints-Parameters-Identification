@@ -25,7 +25,7 @@ precompile_time = @elapsed begin
 end
 
 using DrWatson
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 using CSV
 df_changepoint = CSV.read(datadir("sims/inference_stoch/stoch_cp_estimate.csv"), DataFrame)
 

@@ -29,7 +29,7 @@ precompile_time = @elapsed begin
 end
 
 using DrWatson
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 
 
 maxiters = local_machine ? 1e3 : 5e3

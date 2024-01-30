@@ -220,7 +220,7 @@ param_dict = DataFrames.DataFrame(
     "relative_error" => abs.(estim_list .- true_ps_list) ./ true_ps_list,
 )
 
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 save_path = datadir(
     "sims/inference_lv/",
 )

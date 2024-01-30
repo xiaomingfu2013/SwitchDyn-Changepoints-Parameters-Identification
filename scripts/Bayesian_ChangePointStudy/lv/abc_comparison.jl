@@ -324,7 +324,7 @@ push!(
     "abc_res" => output,
 )
 
-@quickactivate "EpidInferenceWIP"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 save_path = "plots_scripts/lv/"
 
 

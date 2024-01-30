@@ -1,6 +1,6 @@
 using JSON
 using DrWatson
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 number_of_sims = 300
 save_path = datadir(
     "sims/inference_stoch"

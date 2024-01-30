@@ -7,7 +7,7 @@ using Test
 println("Starting tests")
 ti = time()
 
-@testset "ChangePointCodeRepo tests" begin
+@testset "SwitchDyn-Changepoints-Parameters-Identification tests" begin
     @info "test adjoint method"
     include("test_adjoint_method.jl")
 end

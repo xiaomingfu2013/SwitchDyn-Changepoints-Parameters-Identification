@@ -2,7 +2,7 @@ using Plots
 using DrWatson
 using DataFrames
 using CSV
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 function get_germany_timeseries_data_daily(;
     viz=false,
     per_million=false,

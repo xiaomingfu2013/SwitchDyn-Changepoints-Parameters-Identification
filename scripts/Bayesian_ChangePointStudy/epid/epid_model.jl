@@ -268,7 +268,7 @@ plt1
 df_quantile_sol
 
 using DrWatson
-@quickactivate "ChangePointCodeRepo"
+@quickactivate "SwitchDyn-Changepoints-Parameters-Identification"
 save_path = datadir("sims/inference_epid/")
 !isdir(save_path) && mkdir(save_path)
 savefig(chn_plt, "$save_path/seird_chain_plot4_depth$(max_depth)_scaling$(var_scaling).png")
