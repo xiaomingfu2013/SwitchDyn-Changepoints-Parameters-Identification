@@ -33,8 +33,6 @@ function generate_forwarddiff_callback(event_times, f_iip, nump_var_invar, cp)
                 end
 
                 integrator.u .+= partial_modify
-
-                # event_time += 1
                 return nothing
             end
         end
@@ -77,13 +75,10 @@ function ChainRulesCore.rrule(
     # if a callback is saving two times in primal solution, we also need to get it at least
     # two times in the solution using dual numbers.
     ts = sol.t
-    # numu0 = length(u0)
     num_p_var = length(p_var)
     num_p_invar = length(p_invar)
     nump_var_invar = num_p_var + num_p_invar  # num lambda, num p,
     f_iip = prob.f.f
-    # odeadjprob = ODEForwardSensitivityProblem(_f, u0, prob.tspan, ps, sensealg)
-
     function forward_sensitivity_backpass(Δ)
         if !(p === nothing || p === DiffEqBase.NullParameters())
             dp = @thunk begin

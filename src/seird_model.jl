@@ -22,9 +22,7 @@ function get_seird_lna_model(nt::NamedTuple)
     model_ = function sir_lna_model_embed!(du, u, p, t; nt=nt, f_embed=f_embed)
         @unpack num_event, len_split_ps, len_split_event_times, len_split_event_times_cum = nt
         p_var, p_invar, event_times = split_vector(p, len_split_ps)
-        # len_split_event_times = (2, 1)
         event_time_idxs = find_event_time(t, event_times, len_split_event_times)
-        # len_split_event_times_cum = (3, 2)
         event_time_λ, event_time_μ = event_time_idxs
 
         λ = p_var[event_time_λ]

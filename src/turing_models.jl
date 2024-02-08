@@ -10,21 +10,11 @@ function turing_change_point(
     @unpack mean_idxs, var_idxs = loss_function_kwargs
     sym_priors = create_symbol_dict(priors_tuple)
     pdist = product_distribution(collect(values(sym_priors)))
-    # num_ts = length(ts)
-    # num_idxs = length(mean_idxs)
-    # num = num_ts * num_idxs # shall we ignore this?
     println("Prior distributions: ")
     display(sym_priors)
-    # pdist_ = product_distribution(NamedDist.(pdist, syms))
     @model function model(data_true, ::Type{T}=Float64) where {T<:Real}
-        # pprior = Vector{T}(undef, length(pdist)) # mutating array
-        # pprior .~ NamedDist.(pdist, syms)
-        # for i in eachindex(pdist)
-        #     pprior[i] ~ NamedDist(pdist[i], syms[i])
-        # end
         pprior ~ pdist
         p_var, p_invar, event_times = build_ps(unflatten(pprior); return_array=false)
-        # u0_ = convert.(T, u0_expanded)
         cp = ChangePointParameters(u0_expanded, p_var, p_invar, event_times, set_of_p_var)
         sol = solve_event_times(cp, ts, prob, alg, sensealg; solvesettings...)
 
@@ -36,8 +26,6 @@ function turing_change_point(
             return nothing
         end
 
-        # loss = zero(T)
-        # σ ~ InverseGamma(2, 3)
         for (i, (mean_idx, var_idx)) in enumerate(zip(mean_idxs, var_idxs))
             mean = sol[mean_idx, :]
             var = max.(sol[var_idx, :], one(T))
@@ -47,8 +35,6 @@ function turing_change_point(
             else
                 Turing.@addlogprob! logpdf_custom(mean, var, observed)
             end
-            # num_σ = sum(predict[var_idx, :] .< σ)
-            # Turing.@addlogprob! logpdf_custom(mean, var, observed) - num_σ * log(σ)
         end
         return nothing
     end
@@ -69,7 +55,6 @@ function loss_function_turing(
     @unpack mean_idxs, var_idxs = loss_function_kwargs
 
     p_var, p_invar, event_times = build_ps(unflatten(ps); return_array=false)
-    # u0_ = convert.(T, u0_expanded)
     cp = ChangePointParameters(u0_expanded, p_var, p_invar, event_times, set_of_p_var)
     sol = solve_event_times(cp, ts, prob, alg, sensealg; solvesettings...)
     loss = zero(T)
@@ -82,8 +67,6 @@ function loss_function_turing(
         else
             loss += -logpdf_custom(mean, var, observed)
         end
-        # num_σ = sum(predict[var_idx, :] .< σ)
-        # Turing.@addlogprob! logpdf_custom(mean, var, observed) - num_σ * log(σ)
     end
     return loss
 end
